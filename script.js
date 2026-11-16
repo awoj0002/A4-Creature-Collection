@@ -64,7 +64,7 @@ for (const creature of $creatures) {
 function changeTheme() {
   document.body.dataset.theme = theme.value
 
-  document.body.setAttribute('page-theme', theme.value)
+  document.body.setAttribute('data-theme', theme.value)
   localStorage.setItem('theme', theme.value)
 }
 
@@ -73,7 +73,7 @@ theme.addEventListener('change', changeTheme)
 function changeLayout() {
   collection.dataset.layout = layout.value
 
-  collection.setAttribute('page-layout', layout.value)
+  collection.setAttribute('data-layout', layout.value)
   localStorage.setItem('layout', layout.value)
 }
 
