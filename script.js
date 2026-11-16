@@ -48,13 +48,13 @@ const layout = document.getElementById("layout")
 // 2. Use a loop to generate the creature entries. See START-HERE.md for markup.
 for (const creature of $creatures) {
   collection.insertAdjacentHTML('beforeend',`
-  <li class="creature">
-      <img src="${creature.image}" alt="${creature.alt}">
-  <div class="creature-info">
-    <h3>${creature.name}</h3>
-    <p class="creature-description">${creature.description}</p>
-  </div>
-</li>`)
+    <li class="creature">
+        <img src="${creature.image}" alt="${creature.alt}">
+    <div class="creature-info">
+      <h3>${creature.name}</h3>
+      <p class="creature-description">${creature.description}</p>
+    </div>
+  </li>`)
 }
     
 
@@ -63,15 +63,41 @@ for (const creature of $creatures) {
 
 function changeTheme() {
   document.body.dataset.theme = theme.value
+
+  document.body.setAttribute('page-theme', theme.value)
+  localStorage.setItem('theme', theme.value)
 }
+
 theme.addEventListener('change', changeTheme)
 
 function changeLayout() {
   collection.dataset.layout = layout.value
-}
-layout.addEventListener('change', changeLayout)
 
+  collection.setAttribute('page-layout', layout.value)
+  localStorage.setItem('layout', layout.value)
+}
+
+layout.addEventListener('change', changeLayout)
 
 // 4. Save both selected preferences to Local Storage.
 // 5. Check for saved data on load and restore the controls and appearance.
+function loadPref() {
+  const prefTheme = localStorage.getItem('theme')
+  const prefLayout = localStorage.getItem('layout')
+
+  if (prefTheme !== null) {
+    theme.value = prefTheme
+    document.body.setAttribute('page-theme', prefTheme)
+  }
+
+  if (prefLayout !== null) {
+    layout.value = prefLayout
+    collection.setAttribute('page-layout', prefLayout)
+  }
+}
+
+loadPref()
+
+
+
 // Add short pseudocode comments before writing each feature.
