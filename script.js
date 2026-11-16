@@ -40,8 +40,27 @@ const $creatures = [
 
 // YOUR WORK: build these features using the supplied HTML, CSS, and data.
 // 1. Select the collection and preference controls.
+const collection = document.getElementById("collection")
+const theme = document.getElementById("theme")
+const layout = document.getElementById("layout")
+
+
 // 2. Use a loop to generate the creature entries. See START-HERE.md for markup.
+for (const creature of $creatures) {
+  collection.insertAdjacentHTML('beforeend',`
+  <li class="creature">
+      <img src="${creature.image}" alt="${creature.alt}">
+  <div class="creature-info">
+    <h3>${creature.name}</h3>
+    <p class="creature-description">${creature.description}</p>
+  </div>
+</li>`)
+}
+    
+
 // 3. Listen for changes to each preference control and update the appearance.
+theme.addEventListener('click', toggleTheme)
+
 // 4. Save both selected preferences to Local Storage.
 // 5. Check for saved data on load and restore the controls and appearance.
 // Add short pseudocode comments before writing each feature.
